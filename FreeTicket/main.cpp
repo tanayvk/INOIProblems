@@ -21,7 +21,7 @@ int main(int argc, char const *argv[]) {
     cache[i][i] = 0;
   }
 
-  // fill in the
+  // fill in the edges
   for (int i = 0; i < F; i++) {
     int x, y, p;
     cin >> x >> y >> p;
@@ -29,12 +29,14 @@ int main(int argc, char const *argv[]) {
     cache[y - 1][x - 1] = cache[x - 1][y - 1] = p;
   }
 
+  // update all the edges
   for ( int k = 0; k < C; k++ )
     for ( int i = 0; i < C; i++ )
       for ( int j = 0; j < C; j++ )
         cache[i][j] = min(cache[i][j], cache[i][k] + cache[k][j]);
 
 
+  // search for the max price
   int maxPrice = -1;
   for ( int i = 0; i < C; i++ ) {
     for ( int j = 0; j < C; j++ ) {
